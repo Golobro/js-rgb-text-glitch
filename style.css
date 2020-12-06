@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+    --red: #ff0000;
+    --blue: #0000ff;
+    --green: #00ff00;
+    --themeColor: #6622aa;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    display: grid;
+    min-height: 100%;
+    place-content: center;
+    background-color: #222222;
+}
+
+/* ====== CONTROLS ====== */
+.controls{
+    width: 100%;
+    display: flex;
+    padding: 1rem 2rem;
+    position: absolute;
+    align-items: center;
+    background: #333333;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px #1e1e1e;
+}
+
+/* === Btn === */
+.controls button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.controls button{
+    padding: 10px;
+    color: #eeeeee;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    border-bottom: 4px solid #cccccc;
+    background-color: var(--themeColor);
+}
+
+.controls button:hover{
+    padding: 10px;
+    border-radius: 10px;
+    background: #eeeeee;
+    color: var(--themeColor);
+    text-transform: uppercase;
+    border-bottom: 4px solid #6622aa;
+}
+
+/* === Blend Modes === */
+.blend-modes-wrap h4{
+    color: #ffffff;
+    text-align: center;
+}
+
+.blend-modes{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.blend-modes div{
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.blend-modes div label{
+    padding: 6px;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+.blend-modes div label[for='red']{
+    background-color: #ff0000aa;
+}
+.blend-modes div label[for='green']{
+    background-color: #00ff00aa;
+}
+.blend-modes div label[for='blue']{
+    background-color: #0000ffaa;
+}
+
+/* === Glitch Strength === */
+.glitch-strength-wrap h4{
+    color: #eeeeee;
+}
+
+/* ====== TEXT MODAL ====== */
+.text-modal{
+    top: -24%;
+    left: 50%;
+    width: 80%;
+    z-index: 1;
+    height: 36%;
+    padding: 60px;
+    display: flex;
+    position: absolute;
+    border-radius: 10px;
+    align-items: center;
+    background: #444444;
+    flex-direction: column;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 10px 20px #812cd6;
+    border-bottom: 4px solid #cccccc;
+}
+
+.text-modal input[type='text']{
+    width: 100%;
+    border: none;
+    padding: 8px;
+    outline: none;
+    color: #ffffff;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #202020;
+    transition: 0.2s ease;
+    border: 2px solid #cccccc;
+}
+
+.text-modal span.close{
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #ffffff;
+    padding: 4px 18px;
+    position: absolute;
+    transition: color 0.2s ease;
+}
+
+.text-modal span.close:hover{
+    color: tomato;
+}
+
+.text-modal .inner-modal{
+    width: 100%;
+}
+
+.text-modal .font-styles{
+    display: flex;
+    padding: 10px 0;
+}
+
+.text-modal .font-styles button{
+    border: none;
+    outline: none;
+    padding: 10px;
+    cursor: pointer;
+    align-items: center;
+    background: #343434;
+    transition: 0.2s ease;
+}
+
+.text-modal .font-styles button:hover{
+    box-shadow: inset 0 0 10px #9f4ef0;
+}
+
+.text-modal .font-styles .font-caps button{
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.text-modal input[type='text']:focus{
+    border: 2px solid var(--themeColor);
+}
+
+.text-modal input[type='text']:focus::placeholder{
+    color: #ffffff;
+}
+
+.showTextControl.text-modal{
+    animation: showTextModal 0.4s ease forwards;
+}
+.hideTextControl.text-modal{
+    animation: hideTextModal 0.4s ease forwards;
+}
+
+/* === BG Overlay === */
+.bg{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    pointer-events: none;
+    background: #220b4a;
+    transition: opacity 0.2s ease;
+}
+
+.bgShow.bg{
+    z-index: 1;
+    opacity: 0.8;
+    pointer-events: initial;
+}
+
+/* ====== ANIMATION ====== */
+@keyframes showTextModal{
+    from{
+        top: -24%;
+    }
+    to{
+        top: 24%;
+    }
+}
+
+@keyframes hideTextModal{
+    from{
+        top: 24%;
+    }
+    to{
+        top: -24%;
+    }
+}
+
+/* ====== TEXT WRAP ====== */
+.text-wrap{
+    padding: 1rem 4rem;
+    border-radius: 12px;
+    background-color: #6622aa;    
+    border: 4px solid #ffffff;
+    box-shadow: 0 0 60px #99ddf8;
+    animation: shadowColor 2s ease alternate infinite;
+}
+
+.text-wrap h1{
+    font-size: 6rem;
+    color: var(--red);
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    mix-blend-mode: hard-light;
+}
+
+.text-wrap h1::before,
+.text-wrap h1::after{
+    width: 100%;
+    position: absolute;
+    content: attr(data-glitch);
+}
+
+.text-wrap h1::before{
+    top: 0;
+    left: 4px;
+    color: var(--green);  
+    mix-blend-mode: screen;    
+    animation: rgbGlitch 0.1s ease infinite;
+}
+
+.text-wrap h1::after{
+    top: 0;
+    left: -4px;
+    color: var(--blue);   
+    mix-blend-mode: exclusion;    
+    content: attr(data-glitch);
+    animation: rgbGlitch 0.1s ease alternate-reverse infinite;
+}
+
+/* ====== ANIMATION ====== */
+@keyframes rgbGlitch{
+    0%{
+        top: 0;
+        left: 4px;
+    } 50% {
+        left: 0;
+        top: 4px;
+    } 100% {
+        top: 0;
+        left: -4px;
+    }
+}
+
+@keyframes shadowColor{
+    from {
+        border: 4px solid #99ddf8;
+        box-shadow: 0 0 90px #99ddf8;
+    } to {
+        border: 4px solid #f8f299;
+        box-shadow: 0 0 60px #f8f299;
+    }
+}
+
+/* ====== FOOTER ====== */
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem 0;
+    color: #ffffff;
+    font-size: 1.2rem;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 0 4px #444444aa;
+    font-family: 'Poppins', sans-serif;
+}
+  
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    -webkit-transition: color 0.2s ease;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: var(--themeColor);
+}
+
+
+
+

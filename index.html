@@ -16,7 +16,11 @@
 </head>
 <body>
     <div class="controls">
-        <button id="changeText">Change Text</button>
+        <div class="btn-wrap">
+            <button id="changeText">Change Text</button>
+            <button id="add_BG">add BG</button>
+            <button id="rmv_BG">remove BG</button>
+        </div>
         <div class="blend-modes-wrap">
             <h4>Blend Modes</h4>
             <div class="blend-modes">
@@ -37,10 +41,14 @@
     </div>
     <div class="glitch-strength-wrap">
         <h4>Glitch Strength <span id="strength"></span></h4>
-        <input type="range" min="0" max="20" id="glitch_strength">
+        <input type="range" value="4" min="0" max="20" id="glitch_strength">
     </div>
     <div class="text-wrap">
-        <h1 data-glitch="Glitch">Glitch</h1>
+        <div class="text">
+            <h1 class="red">Glitch</h1>
+            <h1 class="green">Glitch</h1>
+            <h1 class="blue">Glitch</h1>
+        </div>
     </div>
     <div class="bg"></div>
     <div class="text-modal">
@@ -48,8 +56,8 @@
             <input type="text" id="glitch_text" placeholder="Change Text">
             <div class="font-styles">
                 <div class="font-caps">
-                    <button id="capitalize">Aa</button>
                     <button id="uppercase">AA</button>
+                    <button id="capitalize">Aa</button>
                     <button id="lowercase">aa</button>
                 </div>
             </div>

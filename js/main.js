@@ -2,13 +2,14 @@ let glitchTextInput = $('glitch_text')
 let glitchStrength = $('glitch_strength')
 let strength = $('strength')
 let textModal = qs('.text-modal')
+let textBG = qs('.text-wrap')
 let textSource = qsa('.text-wrap h1')
 let selectModes = qsa('select')
 let bgOverlay = qs('.bg')
 
 // Buttons
-let add_BgBtn = $('add_BG')
-let rmv_BgBtn = $('rmv_BG')
+let addBg_Btn = $('add_BG')
+let rmvBg_Btn = $('rmv_BG')
 let changeTextBtn = $('changeText')
 let fontCaps = qsa('.font-caps button')
 let closeModalBtn = qs('.text-modal span.close')
@@ -75,16 +76,18 @@ selectModes.forEach(selectMode => {
     createOptions(blendModes, selectMode)
     selectMode.addEventListener('change', e => {
         let mode = e.target.value
+        let id = e.target.id
+
         // Filter Modes based on select id
-        if(e.target.id === 'red'){
-            setBlendMode(redText, mode)
-        } else if(e.target.id === 'green'){
-            setBlendMode(greenText, mode)
-        } else {
-            setBlendMode(blueText, mode)
-        }
+        filterModes(id, 'red', redText, mode)
+        filterModes(id, 'green', greenText, mode)
+        filterModes(id, 'blue', blueText, mode)
     })
 })
+
+function filterModes(id, text, textElm, mode){
+    id === text ? setBlendMode(textElm, mode) : 0
+}
 
 function setBlendMode(elm, mode){
     elm.style.mixBlendMode = mode
@@ -101,13 +104,13 @@ function createOptions(optionsList, parent){
     })
 
     // Load Current Settings
-    if(parent.id === 'red'){
-        parent.value = getTextBlendMode(redText)
-    } else if (parent.id === 'green') {
-        parent.value = getTextBlendMode(greenText)
-    } else {
-        parent.value = getTextBlendMode(blueText)
-    }
+    loadCurrentSettings(parent, 'red', redText)
+    loadCurrentSettings(parent, 'green', greenText)
+    loadCurrentSettings(parent, 'blue', blueText)
+}
+
+function loadCurrentSettings(elm, text, textElm){
+    elm.id === text ? elm.value = getTextBlendMode(textElm) : 0
 }
 
 function getTextBlendMode(elm){
@@ -171,16 +174,16 @@ function changeTextFontCaps(elm, fontCap){
     elm.forEach(el => el.style.textTransform = fontCap)
 }
 
-add_BgBtn.addEventListener('click', () => {
-    setElementDisplay(rmv_BgBtn, 'show')
-    setElementDisplay(add_BgBtn, 'hide')
-    qs('.text-wrap').classList.add('addBG')
+addBg_Btn.addEventListener('click', () => {
+    setElementDisplay(rmvBg_Btn, 'show')
+    setElementDisplay(addBg_Btn, 'hide')
+    getElementClass(textBG, 'add', 'addBG')
 })
 
-rmv_BgBtn.addEventListener('click', () => {
-    setElementDisplay(rmv_BgBtn, 'hide')
-    setElementDisplay(add_BgBtn, 'show')
-    qs('.text-wrap').classList.remove('addBG')
+rmvBg_Btn.addEventListener('click', () => {
+    setElementDisplay(rmvBg_Btn, 'hide')
+    setElementDisplay(addBg_Btn, 'show')
+    getElementClass(textBG, 'rmv', 'addBG')
 })
 
 function setElementDisplay(elm, display){
